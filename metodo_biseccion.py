@@ -29,15 +29,19 @@ def biseccion():
     error = float(input("Ingrese el error: "))
     while abs(xu-xl)>error:
         xr = (xl+xu)/2
-        if evaluacion(funcion1,xr)==0:
+        evaluacion1 = evaluacion(funcion1,xr)
+        evaluacion2 = evaluacion(funcion1,xl)*evaluacion(funcion1,xr)
+        evaluacion3 = evaluacion(funcion1,xl)*evaluacion(funcion1,xr)
+        if evaluacion1==0:
             return xr,iteraciones
         else:
-            if evaluacion(funcion1,xl)*evaluacion(funcion1,xr)<0:
+            if evaluacion2<0:
                 xu = xr 
             else:
-                if evaluacion(funcion1,xl)*evaluacion(funcion1,xr)>0:
+                if evaluacion3>0:
                     xl = xr   
         iteraciones +=1
+        print(iteraciones,xl,xu,xr,evaluacion1,evaluacion2,evaluacion3,xu-xl)
     return xr,iteraciones
 
 #funcion = funcion()
