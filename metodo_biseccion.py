@@ -27,6 +27,7 @@ def biseccion():
     xl = float(input("Ingrese el limite inferior del intervalo: "))
     xu = float(input("Ingrese el limite superior del intervalo: "))
     error = float(input("Ingrese el error: "))
+    print("\niteraciones,xl,xu,xr,f(xr),f(xl)*f(xr),f(xu)*f(xr),error")
     while abs(xu-xl)>error:
         xr = (xl+xu)/2
         evaluacion1 = evaluacion(funcion1,xr)
