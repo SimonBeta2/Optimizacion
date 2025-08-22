@@ -1,6 +1,6 @@
-import matplotlib as plt
-import math
-
+import matplotlib.pyplot as plt
+import numpy as np
+import sympy as sp
 def funcion():
     f = input("Ingrese la funcion: ")
     return f
@@ -43,10 +43,42 @@ def biseccion():
                     xl = xr   
         iteraciones +=1
         print(iteraciones,xl,xu,xr,evaluacion1,evaluacion2,evaluacion3,xu-xl)
-    return xr,iteraciones
+    return funcion1,xr
+
+def grafica(funcion,xr):
+    puntosy=[]
+    xl = int(input("Ingrese el limite inferior de la grafica: "))
+    xu = int(input("Ingrese el limite superior de la grafica: "))
+    puntosx = np.arange(xl,xu,0.1)
+    raizx = xr
+    raizy = evaluacion(funcion,xr)
+    for i in range(len(puntosx)):
+        puntosy.append(evaluacion(funcion,puntosx[i]))
+    #print(puntosx,puntosy)
+    
+    plt.plot(puntosx,puntosy)
+    plt.plot(raizx,raizy,"o")
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title(funcion)
+    plt.show()
+
+def grafica1(funcion,xr):
+    x = sp.Symbol("x")
+    f = sp.sympify(funcion)
+    px = xr
+    py = sp.Subs(f,x,px)
+
+    g1 = sp.plot(f, (x, -10, 60))
+    g2 = sp.plot(sp.Point(px,py))
+    g1.extend(g2)
+    g2.show()
+    g1.show()
+
 
 #funcion = funcion()
 #evaluacion = evaluacion(funcion,1)
 #print(evaluacion)
-print(biseccion())
+funcion, xr = biseccion()
+grafica1(funcion, xr)
 
